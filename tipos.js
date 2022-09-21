@@ -75,6 +75,18 @@ function tratarFuncionarios(funcionarios) {
         console.log("Nome do Funcionário: " + funcionario.nome);
     }
     ;
+}
+;
+let altura = 1.6;
+altura = null;
+const contato = {
+    nome: "Marcos",
+    telefone1: "123216",
 };
-
-
+//Type Assertion
+const minhaIdade = 23;
+// (minhaIdade as number).toString();
+minhaIdade.toString();
+// const input = document.getElementById("numero1") as HTMLInputElement;
+const input = document.getElementById("numero1");
+console.log(input.value);
