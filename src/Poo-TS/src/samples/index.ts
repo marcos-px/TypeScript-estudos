@@ -31,7 +31,6 @@ interface SerVivo {
 interface Vegetal extends SerVivo {
     localizacao: Localizacao
 }
-
 interface Animal extends SerVivo {
     peso: number
 }
@@ -39,7 +38,9 @@ interface Animal extends SerVivo {
 const criaSerVivo = (nome: string, idade: number): SerVivo => {
     return {
         nome: nome,
-        idade: idade
+        idade: idade,
+        // morre:Date
+        
     };
 }
 
@@ -86,4 +87,87 @@ class Ser implements SerVivo {
     morre(data: Date): void {
         this.dtObito = data;
     }
+}
+
+// const ser = new Ser("Lupita",5);
+// ser.morre(new Date());
+
+class SerAnimal implements Animal {
+    nome: string;
+    idade: number;
+    dtObito?: Date;
+    peso: number;
+
+    constructor(serVivo: SerVivo, peso:number){
+        this.nome = serVivo.nome;
+        this.idade = serVivo.idade;
+        this.peso = peso;
+}
+morre(data: Date): void {
+    this.dtObito = data;
+}
+};
+
+class SerVegetal implements Vegetal {
+    nome: string;
+    idade: number;
+    dtObito?: Date;
+    localizacao: Localizacao;
+
+    constructor(serVivo: SerVegetal, idade:number, localizacao:Localizacao){
+        this.nome = serVivo.nome;
+        this.idade = serVivo.idade;
+        this.localizacao = localizacao;
+}
+morre(data: Date): void {
+    this.dtObito = data;
+}
+};
+
+const serGato = new Ser("Belchior", 1);
+const gato = new SerAnimal(serGato,8);
+
+const serRosa = new Ser("rosa", 1);
+const rosa = new SerVegetal(serRosa,15,{latitude:0,longitude:0});
+
+gato.morre(new Date());
+rosa.morre(new Date());
+
+console.log(gato);
+console.log(rosa);
+
+//Herança
+
+class SerAnimal1  extends Ser implements Animal{
+    peso: number;
+
+    constructor(nome: string, idade: number, peso: number) {
+        super(nome, idade);
+        this.peso = peso;
+        
+    }
+}
+
+class SerVegetal1  extends Ser implements Vegetal{
+    localizacao: Localizacao;
+
+    constructor(nome: string, idade: number, localizacao: Localizacao) {
+        super(nome, idade);
+        this.localizacao = localizacao;
+        
+    }
+}
+
+const galinha = new SerAnimal1("galinha", 1, 2);
+const camara = new SerVegetal1("camara", 2, { latitude: 1000, longitude: 1000});
+
+galinha.morre(new Date());
+camara.morre(new Date());
+console.log(galinha);
+console.log(camara);
+
+//Modificadores de Acesso:
+
+interface SerVivo2{
+    
 }
